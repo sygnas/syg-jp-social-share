@@ -1,0 +1,23 @@
+{
+  "name": "syg-jp-social-share",
+  "version": "1.0.1",
+  "description": "日本向けのソーシャルシェアボタンのリンクを作成",
+  "main": "syg-jp-social-share.js",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sygnas/syg-jp-social-share"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "javascript",
+    "social",
+    "share"
+  ],
+  "author": "Hiroshi Fukuda <info.sygnas@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

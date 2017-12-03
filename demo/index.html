@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>syg-jp-social-share demo</title>
+        <style>
+            .msg:after{
+                content: attr(data-text);
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>syg-jp-social-share</h1>
+
+        <ul>
+            <li><a href="#" class="js-social-share"
+                   data-share-service="twitter"
+                   data-share-account="sygnas"
+                   data-share-follow="sygnas"
+                   data-share-url="http://google.com/"
+                   data-share-msg="Hello world."
+                   >Twitter（オプション全部指定）</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="twitter"
+                   >Twitter（オプション無指定）</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="facebook"
+                   data-share-url="http://google.com/"
+                   >Facebook</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="line"
+                   data-share-url="http://google.com/"
+                   data-share-msg="Hello world."
+                   >LINE</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="feedly"
+                   data-share-url="http://google.com/"
+                   >Feedly</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="pocket"
+                   data-share-url="http://google.com/"
+                   >Pocket</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="hatebu"
+                   data-share-url="http://google.com/"
+                   data-share-msg="Hello world."
+                   >はてなブックマーク</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="google"
+                   data-share-url="http://yahoo.co.jp/"
+                   >Google+</a></li>
+
+            <li><a href="#" class="js-social-share"
+                   data-share-service="foo"
+                   >サポート対象外の場合 console に出力</a></li>
+
+        </ul>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.9.1/polyfill.min.js"></script>
+        <script src="bundle.js?2"></script>
+    </body>
+</html>
+
+
+
