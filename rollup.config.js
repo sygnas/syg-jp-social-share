@@ -18,7 +18,7 @@ const paths = {
 let fileName,
     Configure;
 
-fileName = process.env.NODE_ENV !== 'production' ? 'syg-jp-social-share' : 'syg-jp-social-share.min';
+fileName = process.env.NODE_ENV !== 'production' ? 'jp-social-share' : 'jp-social-share.min';
 
 Configure = {
     entry: `${paths.source.root}index.js`,

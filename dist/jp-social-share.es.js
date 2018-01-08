@@ -141,4 +141,4 @@ function get_window_option(opt) {
 }
 
 export default index;
-//# sourceMappingURL=syg-jp-social-share.es.js.map
+//# sourceMappingURL=jp-social-share.es.js.map

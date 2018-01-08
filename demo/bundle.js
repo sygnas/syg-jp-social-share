@@ -72,11 +72,11 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_syg_jp_social_share_es__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_jp_social_share_es__ = __webpack_require__(1);
 
 
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dist_syg_jp_social_share_es__["a" /* default */])('.js-social-share');
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dist_jp_social_share_es__["a" /* default */])('.js-social-share');
 
 /***/ }),
 /* 1 */
@@ -226,7 +226,7 @@ function get_window_option(opt) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (index);
-//# sourceMappingURL=syg-jp-social-share.es.js.map
+//# sourceMappingURL=jp-social-share.es.js.map
 
 /***/ }),
 /* 2 */

@@ -149,4 +149,4 @@ function get_window_option(opt) {
 return index;
 
 })));
-//# sourceMappingURL=syg-jp-social-share.js.map
+//# sourceMappingURL=jp-social-share.js.map

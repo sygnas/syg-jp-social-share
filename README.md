@@ -26,7 +26,7 @@
 
 ### Install
 ```sh
-npm install syg-jp-social-share
+npm install --save @sygnas/jp-social-share
 ```
 
 ### html
@@ -48,7 +48,7 @@ npm install syg-jp-social-share
 
 ### Script
 ```JavaScript
-import social_share from 'syg-jp-social-share';
+import social_share from '@sygnas/jp-social-share';
 
 social_share('.js-social-share');
 ```
