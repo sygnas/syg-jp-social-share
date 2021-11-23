@@ -8,6 +8,17 @@
 
 ※主要かどうかは作者の主観です。
 
+## Release
+
+- 2021.11.23
+  - TypeScriptで作り直し
+  - class形式にしたので呼び出し方法が変更になった
+  - 任意のサービスの追加機能は無くした
+  - Google+を除外
+- 2019.10.17
+  - API、`openShareWindow()`を追加
+
+
 ### 対応サービス
 
 - Twitter
@@ -16,9 +27,7 @@
 - Feedly
 - Pocket
 - はてなブックマーク
-- Google+
 
-自分でサービスを追加することも可能です。
 
 ## Usage
 
@@ -31,40 +40,109 @@ npm install --save @sygnas/jp-social-share
 
 ### html
 ```html
-<ul>
-    <li><a href="#" class="js-social-share"
+<a href="#" class="js-social-share"
+    data-share-service="twitter"
+    data-share-account="sygnas"
+    data-share-follow="sygnas"
+    data-share-url="http://google.com/"
+    data-share-msg="Hello world."
+>
+  Twitter
+</a>
+
+<!-- data-share-url、data-share-msg が設定されていない場合
+そのページのURL、タイトルが使われる -->
+<a href="#" class="js-social-share"
+    data-share-service="facebook">
+  Facebook
+</a>
+
+<button class="js-test">スクリプトから開く</button>
+```
+
+### Script：静的なボタンから
+```JavaScript
+import socialShare from '@sygnas/jp-social-share';
+
+// HTML上に設置しているリンクから開くパターン
+socialShare.setShareButton('.js-social-share');
+```
+
+### Script：動的に開く1
+
+Vueなどで動的に生成されるボタンから使いたいときは下記のようにする。
+
+```JavaScript
+<template>
+...
+<a href="#" @click.prevent="share"
             data-share-service="twitter"
             data-share-account="sygnas"
             data-share-follow="anime_shingeki"
             data-share-url="http://google.com/"
             data-share-msg="Hello world."
-            >Twitter</a></li>
+            >Twitter</a>
+...
+</template>
 
-    <!-- data-share-url、data-share-msg が設定されていない場合はそのページのURL、タイトルが使われる -->
-    <li><a href="#" class="js-social-share"
-            data-share-service="facebook">Facebook</a></li>
-</ul>
+<script>
+import socialShare from '@sygnas/jp-social-share';
+
+export default {
+  methods: {
+    share(e) {
+      socialShare.openShareWindowWithElement(e.target);
+    }
+  },
+}
 ```
 
-### Script
-```JavaScript
-import social_share from '@sygnas/jp-social-share';
 
-social_share('.js-social-share');
+### Script：動的に開く2
+
+ボタンなど用意せずに動的に開きたいパターン。
+
+```html
+<button class="js-test">シェアする</button>
+```
+
+```JavaScript
+import socialShare from '@sygnas/jp-social-share';
+
+const btn = document.querySelector('.js-test');
+
+btn.addEventListener('click', (ev) => {
+  socialShare.openShareWindow(socialShare.SERVICES.TWITTER, 'https://google.com', 'メッセージ');
+});
 ```
 
 ## Data attributes
 
 | data属性 | 初期値 | 説明 |
 | --- | --- | --- |
-| data-share-service |  | ソーシャルサービス名<br>（twitter / facebook / line / feedly / pocket / hatebu / google） |
+| data-share-service |  | ソーシャルサービス名<br>（twitter / facebook / line / feedly / pocket / hatebu |
 | data-share-url | location.href | シェアしたいURL |
 | data-share-msg | document.title | メッセージ |
 | data-share-account |  | Twitter専用 / Replyに入れるアカウント |
 | data-share-follow |  | Twitter専用 / ツイート後にフォローを促すアカウント |
 
 
-## Options
+## Methods
+
+### setShareButton
+
+ボタンクリックでシェアウィンドウを開くよう設定。
+
+```
+static setShareButton(target: string, option: TOption = {}): void
+```
+
+| 引数 | 説明 |
+| ---- | ---- |
+| target | 対象ボタンのclassなど |
+| option | ウィンドウサイズ、シェア実行URLの設定 |
+
+
 
 ```javascript
 const options = {
@@ -72,65 +150,76 @@ const options = {
         width: 500,
         height: 450
     },
-    facebook: 'http://www.facebook.com/share.php?u={{URL}}'
+    service: {
+      facebook: 'http://www.facebook.com/share.php?u={{URL}}',
+    },
 }
-social_share('.js-social-share', options);
+socialShare.setShareButton('.js-social-share', options);
 ```
+
+#### Option
 
 | 項目 | 説明 |
 | ---- | ---- |
 | window | window.open() で使用するパラメータのオブジェクト |
-| twitter | Twitter シェア用テンプレート |
-| facebook | Facebook シェア用テンプレート |
-| line | LINE シェア用テンプレート |
-| feedly | Feedly シェア用テンプレート |
-| pocket | pocket シェア用テンプレート |
-| hatebu | はてなブックマークシェア用テンプレート |
-| google | Google+ シェア用テンプレート |
+| services | 各サービスのシェア用テンプレート / twitter / facebook / line / feedly / pocket / hatebu |
 
-### Default
+#### Default
 ```javascript
 const defaults = {
-    // window.open() のオプション
-    window: {
-        width: 550,
-        height: 450,
-        personalbar: 0,
-        toolbar: 0,
-        scrollbars: 1,
-        resizable: 1
-    },
-    // シェア用URLのテンプレート
-    twitter: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
+  window: {
+    width: 550,
+    height: 450,
+    personalbar: 0,
+    toolbar: 0,
+    scrollbars: 1,
+    resizable: 1,
+  },
+  // シェア用URLのテンプレート
+  services: {
+    twitter:
+      'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
     facebook: 'http://www.facebook.com/share.php?u={{URL}}',
     line: 'line://msg/text/{{MESSAGE}} {{URL}}',
     feedly: 'http://feedly.com/i/subscription/feed/{{URL}}',
     pocket: 'http://getpocket.com/edit?url={{URL}}',
     hatebu: '//b.hatena.ne.jp/add?mode=confirm&url={{URL}}&title={{MESSAGE}}',
-    google: 'https://plus.google.com/share?url={{URL}}'
+  },
 };
 ```
-### Customize
 
-登録されていないサービスを追加することも可能です。
+### openShareWindowWithElement
 
-```javascript
-const options = {
-    // 追加したいサービス
-    // {サービス名} : '{テンプレート文字列}'
-    foobar: 'http://foo.bar/share.php?url={{URL}}&msg={{MESSAGE}}'
-}
-social_share('.js-social-share', options);
+エレメントから情報を取得してシェアウィンドウを開く。
+
+```
+static openShareWindowWithElement(elm: HTMLElement): void
 ```
 
-#### Parameter
+### openShareWindow
 
-| 項目 | 説明 |
-| --- | --- |
-| {{URL}} | data-share-url 属性を反映 |
-| {{MESSAGE}} | data-share-message 属性を反映 |
-| {{ACCOUNT}} | data-share-account 属性を反映 |
-| {{FOLLOW}} | data-share-follow 属性を反映 |
+パラメータを指定してシェアウィンドウを開く。
+
+```
+static openShareWindow(
+  service: TService,
+  url: string = '',
+  message: string = '',
+  account: string = '',
+  follow: string = ''
+): void
+```
+
+| 引数 | 説明 |
+| ---- | ---- |
+| service | ソーシャルサービス識別子 |
+| url | シェアURL |
+| message | メッセージ本文 |
+| account | ツイートに付けるRepleyアカウント |
+| follow | ツイート後に表示するフォロー候補アカウント |
+
+
+
 
 ## License
 MIT

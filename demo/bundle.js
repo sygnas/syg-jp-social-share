@@ -1,239 +1,242 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+(function () {
+  'use strict';
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dist_jp_social_share_es__ = __webpack_require__(1);
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
 
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
 
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dist_jp_social_share_es__["a" /* default */])('.js-social-share');
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    return obj;
+  }
 
-"use strict";
-/**
- * 日本向けソーシャルシェアボタン
- *
- * @author   Hiroshi Fukuda <info.sygnas@gmail.com>
- * @license  MIT
- */
+  /**
+   * 日本向けソーシャルシェアボタン
+   *
+   * @author   Hiroshi Fukuda <info.sygnas@gmail.com>
+   * @license  MIT
+   */
 
-/* global location */
-/* eslint no-restricted-globals: ["off", "location"] */
-/* eslint no-empty: ["off"] */
-/* eslint no-lone-blocks: ["off"] */
+  var JpSocialShare = /*#__PURE__*/function () {
+    function JpSocialShare() {
+      _classCallCheck(this, JpSocialShare);
+    }
 
-var SERVICE_TWITTER = 'twitter';
-var defaults = {
-    // window.open() のオプション
-    window: {
-        width: 550,
-        height: 450,
-        personalbar: 0,
-        toolbar: 0,
-        scrollbars: 1,
-        resizable: 1
-    },
-    // シェア用URLのテンプレート
-    twitter: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
-    facebook: 'http://www.facebook.com/share.php?u={{URL}}',
-    line: 'line://msg/text/{{MESSAGE}} {{URL}}',
-    feedly: 'http://feedly.com/i/subscription/feed/{{URL}}',
-    pocket: 'http://getpocket.com/edit?url={{URL}}',
-    hatebu: '//b.hatena.ne.jp/add?mode=confirm&url={{URL}}&title={{MESSAGE}}',
-    google: 'https://plus.google.com/share?url={{URL}}'
-};
+    _createClass(JpSocialShare, null, [{
+      key: "setShareButton",
+      value: // サービス名識別子
+      ////////////////////////
+      ////////////////////////
 
-/**
- * シェアボタンのリンクを設定する
- * @param {String} target 対象ボタンのセレクタ
- * @param {Object} options 新規ウィンドウのパラメータ（defaults参照）
- */
-var index = function index(target, options) {
-    // 設定のマージ
-    var opt = Object.assign(defaults, options);
+      /**
+       * シェアボタンのリンクを設定する
+       * @param {String} target 対象ボタンのセレクタ
+       * @param {Object} option 新規ウィンドウのパラメータ（defaults参照）
+       */
+      function setShareButton(target) {
+        var _this = this;
 
-    // クリック動作
-    get_node_array(document.querySelectorAll(target)).forEach(function (elm) {
-        elm.addEventListener('click', function (e) {
-            // シェア用ウィンドウを開く
-            open_window(elm);
-            e.preventDefault();
+        var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}; // 設定のマージ
+
+        this.opt = Object.assign(this.defaults, option); // クリックイベントを設定
+
+        this.getNodeArray(document.querySelectorAll(target)).forEach(function (elm) {
+          elm.addEventListener('click', function (ev) {
+            var elm = ev.currentTarget;
+
+            _this.openShareWindowWithElement(elm);
+
+            ev.preventDefault();
+          });
         });
-    });
+      }
+      /**
+       * エレメントから情報を取得してシェア用ウィンドウを開く
+       */
 
-    /**
-     * シェア用ウィンドウを開く
-     * @param elm {Element} クリックしたエレメント
-     */
-    function open_window(elm) {
+    }, {
+      key: "openShareWindowWithElement",
+      value: function openShareWindowWithElement(elm) {
         // エレメントからパラメータを取得
         var service = elm.getAttribute('data-share-service');
-        var account = elm.getAttribute('data-share-account') || '';
-        var follow = elm.getAttribute('data-share-follow') || '';
+        var url = elm.getAttribute('data-share-url') || '';
         var message = elm.getAttribute('data-share-message') || document.title;
-        var url = elm.getAttribute('data-share-url') || location.href;
+        var account = elm.getAttribute('data-share-account') || '';
+        var follow = elm.getAttribute('data-share-follow') || ''; // シェア用ウィンドウを開く
 
-        // 存在しないサービスだったら抜ける
-        if (Object.keys(opt).indexOf(service) === -1) {
-            console.log(service + ' is not supported.');
-            return;
-        }
+        this.openShareWindow(service, url, message, account, follow);
+      }
+      /**
+       * シェア用ウィンドウを開く
+       * @param service {String} ソーシャルサービス識別子
+       * @param url {String} シェアURL
+       * @param message {String} メッセージ本文
+       * @param account {String} ツイートに付けるRepleyアカウント
+       * @param follow {String} ツイート後に表示するフォロー候補アカウント
+       */
 
-        // テンプレートからコンバート
-        var open_url = convert_open_url(service, account, follow, message, url);
+    }, {
+      key: "openShareWindow",
+      value: function openShareWindow(service) {
+        var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+        var account = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+        var follow = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : ''; // 存在しないサービスだったらエラー
 
-        // LINEはアプリに飛ばす。それ以外はウィンドウを開く
-        if (service === 'line') {
-            window.location.href = open_url;
+        if (this.opt.services && Object.keys(this.opt.services).indexOf(service) === -1) {
+          console.log("".concat(service, " is not supported."));
+          return;
+        } // テンプレートからコンバート
+
+
+        var openUrl = this.convertOpenUrl(service, url, message, account, follow); // LINEはアプリに飛ばす。それ以外はウィンドウを開く
+
+        if (service === this.SERVICES.LINE) {
+          window.location.href = openUrl;
+        } else if (this.opt.window) {
+          var windowOption = this.getWindowOption(this.opt.window);
+          window.open(openUrl, "share_".concat(service), windowOption);
         } else {
-            var window_opt = get_window_option(opt.window);
-            window.open(open_url, 'share_' + service, window_opt);
+          console.log('Window option is not defined.');
+          return;
         }
-    }
-    /**
-     * サービス毎のURLを取得
-     * パラメータによっては加工がされる
-     * @param service {String} ソーシャルサービス識別子
-     * @param account {String} ツイートに付けるRepleyアカウント
-     * @param follow {String} ツイート後に表示するフォロー候補アカウント
-     * @param message {String} メッセージ本文
-     * @param url {String} シェアURL
-     * @return {String} シェア窓オープンURL
-     */
-    function convert_open_url(service, account, follow, message, url) {
+      } ////////////////////////
+      ////////////////////////
+
+      /**
+       * サービス毎のURLを取得
+       * パラメータによっては加工がされる
+       * @param service {String} ソーシャルサービス識別子
+       * @param url {String} シェアURL
+       * @param message {String} メッセージ本文
+       * @param account {String} ツイートに付けるRepleyアカウント
+       * @param follow {String} ツイート後に表示するフォロー候補アカウント
+       * @return {String} シェア窓オープンURL
+       */
+
+    }, {
+      key: "convertOpenUrl",
+      value: function convertOpenUrl(service) {
+        var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+        var message = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+        var account = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+        var follow = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
         var eu = encodeURIComponent;
-        var open_url = opt[service];
+        var shareUrl = url || location.href;
+        var openUrl = this.opt.services ? this.opt.services[service] : "";
 
-        // Twitterだけパラメータの内容によってURLが変わる
-        if (service === SERVICE_TWITTER) {
-            if (!account) open_url = open_url.replace('&via={{ACCOUNT}}', '');
-            if (!follow) open_url = open_url.replace('&related={{FOLLOW}}', '');
+        if (!openUrl) {
+          console.log("".concat(service, " is not supported."));
+          return "";
+        } // Twitterだけパラメータの内容によってURLが変わる
+
+
+        if (service === this.SERVICES.TWITTER) {
+          if (!account) openUrl = openUrl.replace("&via={{ACCOUNT}}", "");
+          if (!follow) openUrl = openUrl.replace("&related={{FOLLOW}}", "");
         }
 
-        open_url = open_url.replace('{{ACCOUNT}}', eu(account));
-        open_url = open_url.replace('{{FOLLOW}}', eu(follow));
-        open_url = open_url.replace('{{MESSAGE}}', eu(message));
-        open_url = open_url.replace('{{URL}}', eu(url));
+        openUrl = openUrl.replace("{{ACCOUNT}}", eu(account));
+        openUrl = openUrl.replace("{{FOLLOW}}", eu(follow));
+        openUrl = openUrl.replace("{{MESSAGE}}", eu(message));
+        openUrl = openUrl.replace("{{URL}}", eu(shareUrl));
+        return openUrl;
+      }
+      /**
+       * NodeListをArrayとして取り出す（IE対策）
+       */
 
-        return open_url;
+    }, {
+      key: "getNodeArray",
+      value: function getNodeArray(nodeList) {
+        return Array.prototype.slice.call(nodeList, 0);
+      }
+      /**
+       * Windowパラメータ作成
+       * @param opt {Object} ウィンドウパラメータ
+       * @return {String} 新規ウィンドウのパラメータ文字列
+       */
+
+    }, {
+      key: "getWindowOption",
+      value: function getWindowOption(opt) {
+        var items = [];
+        Object.keys(opt).forEach(function (key) {
+          items.push("".concat(key, "=").concat(opt[key]));
+        });
+        return items.join(",");
+      }
+    }]);
+
+    return JpSocialShare;
+  }();
+
+  _defineProperty(JpSocialShare, "SERVICES", {
+    TWITTER: 'twitter',
+    FACEBOOK: 'facebook',
+    LINE: 'line',
+    FEEDLY: 'feedly',
+    POCKET: 'pocket',
+    HATEBU: 'hatebu'
+  });
+
+  _defineProperty(JpSocialShare, "opt", void 0);
+
+  _defineProperty(JpSocialShare, "defaults", {
+    // window.open() のオプション
+    window: {
+      width: 550,
+      height: 450,
+      personalbar: 0,
+      toolbar: 0,
+      scrollbars: 1,
+      resizable: 1
+    },
+    // シェア用URLのテンプレート
+    services: {
+      twitter: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
+      facebook: 'http://www.facebook.com/share.php?u={{URL}}',
+      line: 'line://msg/text/{{MESSAGE}} {{URL}}',
+      feedly: 'http://feedly.com/i/subscription/feed/{{URL}}',
+      pocket: 'http://getpocket.com/edit?url={{URL}}',
+      hatebu: '//b.hatena.ne.jp/add?mode=confirm&url={{URL}}&title={{MESSAGE}}'
     }
-};
+  });
 
-/**
- * Element.matches() polyfill
- */
-if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
-        var matches = (this.document || this.ownerDocument).querySelectorAll(s);
-        var i = matches.length;
-        do {
-            i -= 1;
-        } while (i >= 0 && matches.item(i) !== this);return i > -1;
-    };
-}
+  JpSocialShare.setShareButton('.js-social-share'); // スクリプトから動かす
 
-/**
- * NodeListをArrayとして取り出す（IE対策）
- */
-function get_node_array(node_list) {
-    return Array.prototype.slice.call(node_list, 0);
-}
+  var btn = document.querySelector('.js-test');
+  btn.addEventListener('click', function (ev) {
+    JpSocialShare.openShareWindow(JpSocialShare.SERVICES.TWITTER);
+  });
 
-/**
- * Windowパラメータ作成
- * @param opt {Object} ウィンドウパラメータ
- * @return {String} 新規ウィンドウのパラメータ文字列
- */
-function get_window_option(opt) {
-    var items = [];
-    Object.keys(opt).forEach(function (key) {
-        items.push(key + '=' + opt[key]);
-    });
-    return items.join(',');
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (index);
-//# sourceMappingURL=jp-social-share.es.js.map
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(0);
-
-
-/***/ })
-/******/ ]);
+})();
+//# sourceMappingURL=bundle.js.map
