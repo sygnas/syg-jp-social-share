@@ -1,10 +1,9 @@
 {
   "name": "@sygnas/jp-social-share",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "日本向けのソーシャルシェアボタンのリンクを作成",
   "main": "dist/commonjs/index.js",
   "module": "dist/es6/index.js",
-  "browser": "dist/jp-social-share.js",
   "moduleName": "sygJpSocialShare",
   "private": false,
   "repository": {
