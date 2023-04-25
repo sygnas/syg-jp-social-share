@@ -79,11 +79,12 @@ var JpSocialShare = /*#__PURE__*/function () {
       } // テンプレートからコンバート
 
 
-      var openUrl = this.convertOpenUrl(service, url, message, account, follow); // LINEはアプリに飛ばす。それ以外はウィンドウを開く
+      var openUrl = this.convertOpenUrl(service, url, message, account, follow); // // LINEはアプリに飛ばす。それ以外はウィンドウを開く
+      // if (service === this.SERVICES.LINE) {
+      //   window.location.href = openUrl;
+      // } else if (this.opt.window) {
 
-      if (service === this.SERVICES.LINE) {
-        window.location.href = openUrl;
-      } else if (this.opt.window) {
+      if (this.opt.window) {
         var windowOption = this.getWindowOption(this.opt.window);
         window.open(openUrl, "share_".concat(service), windowOption);
       } else {
@@ -186,7 +187,8 @@ _defineProperty(JpSocialShare, "defaults", {
   services: {
     twitter: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
     facebook: 'http://www.facebook.com/share.php?u={{URL}}',
-    line: 'line://msg/text/{{MESSAGE}} {{URL}}',
+    // line: 'line://msg/text/{{MESSAGE}} {{URL}}',
+    line: 'https://social-plugins.line.me/lineit/share?url={{URL}}',
     feedly: 'http://feedly.com/i/subscription/feed/{{URL}}',
     pocket: 'http://getpocket.com/edit?url={{URL}}',
     hatebu: '//b.hatena.ne.jp/add?mode=confirm&url={{URL}}&title={{MESSAGE}}'
