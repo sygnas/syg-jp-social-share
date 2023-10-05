@@ -11,6 +11,7 @@ class JpSocialShare {
   // サービス名識別子
   static SERVICES: { [key: string]: TService } = {
     TWITTER: 'twitter',
+    X: 'x',
     FACEBOOK: 'facebook',
     LINE: 'line',
     FEEDLY: 'feedly',
@@ -32,8 +33,8 @@ class JpSocialShare {
     },
     // シェア用URLのテンプレート
     services: {
-      twitter:
-        'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
+      twitter: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
+      x: 'http://twitter.com/share?url={{URL}}&text={{MESSAGE}}&via={{ACCOUNT}}&related={{FOLLOW}}',
       facebook: 'http://www.facebook.com/share.php?u={{URL}}',
       // line: 'line://msg/text/{{MESSAGE}} {{URL}}',
       line: 'https://social-plugins.line.me/lineit/share?url={{URL}}',

@@ -10,6 +10,8 @@
 
 ## Release
 
+- 2023.08.16
+  - 「X」対応（URLはTwitterのまま）
 - 2021.11.27
   - ブラウザ版削除
 - 2021.11.23
@@ -23,7 +25,7 @@
 
 ### 対応サービス
 
-- Twitter
+- Twitter（X）
 - Facebook
 - LINE
 - Feedly

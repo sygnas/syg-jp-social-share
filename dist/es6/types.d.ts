@@ -1,4 +1,4 @@
-declare type TService = "twitter" | "facebook" | "line" | "feedly" | "pocket" | "hatebu";
+declare type TService = "twitter" | "x" | "facebook" | "line" | "feedly" | "pocket" | "hatebu";
 declare type TOptionWindowParam = "width" | "height" | "personalbar" | "toolbar" | "scrollbars" | "resizable";
 declare type TOptionWindow = {
     width: number;
@@ -11,6 +11,7 @@ declare type TOptionWindow = {
 declare type TOption = {
     window?: TOptionWindow;
     services?: {
+        x: string;
         twitter: string;
         facebook: string;
         line: string;

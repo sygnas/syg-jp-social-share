@@ -1,5 +1,6 @@
 type TService =
   | "twitter"
+  | "x"
   | "facebook"
   | "line"
   | "feedly"
@@ -27,6 +28,7 @@ type TOption = {
   window?: TOptionWindow;
   // シェア用URLのテンプレート
   services?: {
+    x: string;
     twitter: string;
     facebook: string;
     line: string;
